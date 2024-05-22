@@ -69,6 +69,7 @@ class Screensaver(xbmcgui.WindowXMLDialog):
         self.clockShadow_control = self.getControl(30015)
 
         self.bingLogo_control = self.getControl(30020)
+        self.trackName_control = self.getControl(30021)
 
         self.picture_duration = (
             int(addon.getSetting('picture_duration')) * 1000
@@ -122,7 +123,8 @@ class Screensaver(xbmcgui.WindowXMLDialog):
                         self.preload_next_photo(next_photo)
                     for i in xrange(self.picture_duration / 500):
                         #self.log('check abort %d' % (i + 1))
-
+                        
+                        self.showNowPlaying()
                         self.setClock()
                         if self.abort_requested:
                             #self.log('slideshow abort_requested')
@@ -173,6 +175,7 @@ class Screensaver(xbmcgui.WindowXMLDialog):
                    fileDate = photo.replace('.jpg','')
                    self.title_control.setLabel(fileDate)
 
+                   self.showNowPlaying()
                    self.setClock()
 
                    for i in xrange(self.picture_duration / 500):
@@ -311,7 +314,13 @@ class Screensaver(xbmcgui.WindowXMLDialog):
                     self.clockAMPM_control.setImage('pm.png')
                 else:
                     self.clockAMPM_control.setImage('am.png')
-
+                    
+    def showNowPlaying(self):
+        if(xbmc.Player().isPlaying()):
+            trackName = xbmc.Player().getPlayingItem().getLabel()
+            self.trackName_control.setLabel('Now Playing: ' + trackName)
+        else:
+            self.trackName_control.setLabel('Bing Pictures Screensaver')
 if __name__ == '__main__':
     screensaver = Screensaver(
         'script-%s-main.xml' % addon_name,

@@ -9,4 +9,5 @@
     <setting id="show_clock" type="bool" label="32114" default="true"/>
     <setting id="use_24h" type="bool" label="32115" default="true"/>
     <setting id="use_bing" type="bool" label="32116" default="true"/>
+    <setting id="show_now_playing" type="bool" label="32117" default="true"/>
 </settings>

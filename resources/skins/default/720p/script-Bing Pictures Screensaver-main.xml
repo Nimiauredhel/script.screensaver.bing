@@ -39,7 +39,7 @@
             <colordiffuse>A0000000</colordiffuse>
             <aspectratio>stretch</aspectratio>
         </control>
-        <control type="label">
+        <control type="label" id="30020">
             <description>Label Screensaver</description>
             <posx>50</posx>
             <posy>675</posy>
